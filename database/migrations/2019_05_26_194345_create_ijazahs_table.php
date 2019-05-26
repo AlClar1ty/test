@@ -15,6 +15,12 @@ class CreateIjazahsTable extends Migration
     {
         Schema::create('ijazahs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no')->unique();
+            $table->double('ipk');
+            $table->integer('ktp_id')->unsigned();
+            $table->foreign('ktp_id')->references('id')->on('ktps');
+            $table->integer('universitas_id')->unsigned();
+            $table->foreign('universitas_id')->references('id')->on('universitas');
             $table->timestamps();
         });
     }
